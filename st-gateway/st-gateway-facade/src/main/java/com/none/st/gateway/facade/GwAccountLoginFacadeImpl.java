@@ -11,6 +11,7 @@ import com.none.api.dto.EntityResponse;
 import com.none.st.bosscenter.facade.stub.BcAccountLoginFacade;
 import com.none.st.bosscenter.facade.stub.dto.BcAccountDTO;
 import com.none.st.bosscenter.facade.stub.dto.BcLoginRequest;
+import com.none.st.gateway.facade.base.BaseFacade;
 import com.none.st.gateway.facade.stub.GwAccountLoginFacade;
 
 import io.swagger.annotations.Api;
@@ -20,7 +21,7 @@ import io.swagger.annotations.ApiResponse;
 @Controller
 @Api( value = "账户基础功能")
 @RequestMapping("/account")
-public class GwAccountLoginFacadeImpl implements GwAccountLoginFacade {
+public class GwAccountLoginFacadeImpl extends BaseFacade implements GwAccountLoginFacade {
 	@Autowired
 	private BcAccountLoginFacade bcAccountLoginFacade;
 	@Override

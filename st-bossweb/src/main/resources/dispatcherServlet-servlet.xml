@@ -33,7 +33,7 @@
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/" />
+		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<!-- 拦截器 -->
@@ -51,4 +51,5 @@
 		</mvc:interceptor>
 		<!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
 	</mvc:interceptors>
+	<bean id="exceptionHandler" class="com.none.st.bossweb.handler.ExceptionHandler"></bean>
 </beans>  

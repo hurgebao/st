@@ -27,4 +27,8 @@ public class ResponseCodeConstants {
 	 * 用戶名或者密碼不能为空
 	 */
 	public static final String USERNAME_PASSWORD_IS_NULL = "100003";
+	/**
+	 * gw系統內部異常
+	 */
+	public static final String GW_ERROR = "200000";
 }
