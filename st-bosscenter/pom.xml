@@ -7,9 +7,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>project-bosscenter</name>
-	<url>http://maven.apache.org</url>
-
 	<modules>
 		<module>st-bosscenter-dao</module>
 		<module>st-bosscenter-facade</module>
@@ -17,9 +14,8 @@
 		<module>st-bosscenter-service</module>
 	</modules>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit_version>4.12</junit_version>
-		<log4j_version>2.5</log4j_version>
+		<log4j_version>2.8.2</log4j_version>
 		<mysql_version>5.1.32</mysql_version>
 		<mybatis_version>3.3.0</mybatis_version>
 		<dubbo_version>2.8.4</dubbo_version>
@@ -27,7 +23,7 @@
 		<redis_client_version>2.8.0</redis_client_version>
 		<javax_validation_version>1.0.0.GA</javax_validation_version>
 		<hibernate_validator_version>4.2.0.Final</hibernate_validator_version>
-		<hdb_common_version>0.0.1-SNAPSHOT</hdb_common_version>
+		<hdb_common_version>2.0.0-SNAPSHOT</hdb_common_version>
 		<resteasy_jaxrs_version>3.0.7.Final</resteasy_jaxrs_version>
 		<resteasy_client_version>3.0.7.Final</resteasy_client_version>
 		<resteasy_netty_version>3.0.7.Final</resteasy_netty_version>
@@ -49,6 +45,7 @@
 		<mockito_version>1.8.5</mockito_version>
 		<mybatis_shard_version>2.0.0B</mybatis_shard_version>
 		<zk_version>0.2</zk_version>
+		<org.slf4j>1.7.25</org.slf4j>
 	</properties>
 	<dependencies>
 		<!-- dependency for unit test -->
@@ -92,11 +89,59 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring_version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.none</groupId>
+			<artifactId>st-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.none</groupId>
+			<artifactId>st-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
-
 		<dependencies>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4j_version}</version>
+			</dependency>
+			<dependency> <!-- 桥接：告诉commons logging使用Log4j2 -->
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-jcl</artifactId>
+				<version>${log4j_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-web</artifactId>
+				<version>${log4j_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>1.0.16</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${org.slf4j}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${org.slf4j}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.101tec</groupId>
 				<artifactId>zkclient</artifactId>
@@ -158,11 +203,7 @@
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring_version}</version>
 			</dependency>
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>dubbo</artifactId>
-				<version>${dubbo_version}</version>
-			</dependency>
+
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
@@ -250,6 +291,16 @@
 				<artifactId>mybatis-spring</artifactId>
 				<version>${mybatis_spring_version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.14</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -264,6 +315,28 @@
 					<encoding>UTF8</encoding>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8</version>
+			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>Snapshots</id>
+			<name>ar-respository</name>
+			<url>http://remotemaven:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>Releases</id>
+			<name>ac-respository</name>
+			<url>http://remotemaven:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
 </project>

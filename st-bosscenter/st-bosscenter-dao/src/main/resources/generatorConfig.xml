@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.32\mysql-connector-java-5.1.32.jar"/>
+  <context id="context1" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+    connectionURL="jdbc:mysql://10.1.20.105:3306/bcdb?useUnicode=true&amp;characterEncoding=UTF-8" 
+    userId="bcuser" password="!Q2w3e4r" />
+     <!-- XXXMapper.pojo -->
+    <javaModelGenerator targetPackage=".bosscenter.dao.po" targetProject="t0-stocktrade-bosscenter-facade-stub/src/main/java">
+	     <property name="enableSubPackages" value="true"/>
+         <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+     <!-- XXXMapper.xml -->
+    <sqlMapGenerator targetPackage="mybatis" targetProject="t0-stocktrade-bosscenter-dao/src/main/resources">
+    	<property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+    <!-- XXXMapper.interface -->
+    <javaClientGenerator targetPackage=".bosscenter.dao.client.rpt" targetProject="t0-stocktrade-bosscenter-dao/src/main/java" type="XMLMAPPER">
+    	<property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+     <!-- XXX.table -->
+    <table tableName="b_fund_pool" domainObjectName="FundPool" enableCountByExample="false" enableUpdateByExample="false" 
+     	enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">
+      <!-- <columnOverride column="???" property="???" /> -->
+    </table>
+  </context>
+</generatorConfiguration>

@@ -1,11 +1,13 @@
 package com.none.api.dto;
+
 /**
  * 分页查询请求
+ * 
  * @author shi
  *
  * @param <T>
  */
-public class PageRequest<T> extends BasicRequest{
+public class PageRequest<T> extends BasicRequest {
 	/**
 	 * 
 	 */
@@ -31,13 +33,14 @@ public class PageRequest<T> extends BasicRequest{
 	 */
 	private String sort;
 	/**
-	 * 升序降序  asc 升序 desc 降序
+	 * 升序降序 asc 升序 desc 降序
 	 */
 	private String order;
 	/**
 	 * 业务请求参数
 	 */
 	private T t;
+
 	/**
 	 * 
 	 * @return
@@ -45,6 +48,7 @@ public class PageRequest<T> extends BasicRequest{
 	public Integer getBeginIndex() {
 		return beginIndex;
 	}
+
 	/**
 	 * 
 	 * @param beginIndex
@@ -52,6 +56,7 @@ public class PageRequest<T> extends BasicRequest{
 	public void setBeginIndex(Integer beginIndex) {
 		this.beginIndex = beginIndex;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -59,6 +64,7 @@ public class PageRequest<T> extends BasicRequest{
 	public Integer getPageSize() {
 		return pageSize;
 	}
+
 	/**
 	 * 
 	 * @param pageSize
@@ -66,6 +72,7 @@ public class PageRequest<T> extends BasicRequest{
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -73,6 +80,7 @@ public class PageRequest<T> extends BasicRequest{
 	public String getBeginDate() {
 		return beginDate;
 	}
+
 	/**
 	 * 
 	 * @param beginDate
@@ -80,6 +88,7 @@ public class PageRequest<T> extends BasicRequest{
 	public void setBeginDate(String beginDate) {
 		this.beginDate = beginDate;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -87,6 +96,7 @@ public class PageRequest<T> extends BasicRequest{
 	public String getEndDate() {
 		return endDate;
 	}
+
 	/**
 	 * 
 	 * @param endDate
@@ -94,6 +104,7 @@ public class PageRequest<T> extends BasicRequest{
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -101,6 +112,7 @@ public class PageRequest<T> extends BasicRequest{
 	public String getSort() {
 		return sort;
 	}
+
 	/**
 	 * 
 	 * @param sort
@@ -108,6 +120,7 @@ public class PageRequest<T> extends BasicRequest{
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -115,6 +128,7 @@ public class PageRequest<T> extends BasicRequest{
 	public String getOrder() {
 		return order;
 	}
+
 	/**
 	 * 
 	 * @param order
@@ -122,19 +136,23 @@ public class PageRequest<T> extends BasicRequest{
 	public void setOrder(String order) {
 		this.order = order;
 	}
+
 	/**
 	 * 业务请求参数
+	 * 
 	 * @return
 	 */
 	public T getT() {
 		return t;
 	}
+
 	/**
 	 * 业务请求参数
+	 * 
 	 * @param t
 	 */
 	public void setT(T t) {
 		this.t = t;
 	}
-	
+
 }

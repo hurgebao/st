@@ -7,25 +7,24 @@
     <artifactId>st-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.none</groupId>
   <artifactId>st-gateway-facade-stub</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>st-gateway-facade-stub</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-    	<groupId>com.none</groupId>
-    	<artifactId>st-api</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
+    <dependencies>
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.none</groupId>
+		<artifactId>st-common</artifactId>
+	</dependency>
+	    <dependency>
+			<groupId>com.none</groupId>
+			<artifactId>st-bosscenter-facade-stub</artifactId>
+	</dependency>
   </dependencies>
 </project>

@@ -7,23 +7,193 @@
     <artifactId>st-bosscenter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.none</groupId>
   <artifactId>st-bosscenter-facade</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   <name>st-bosscenter-facade</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  		<profiles>
+	 	<dependency>
+			  <groupId>org.apache.logging.log4j</groupId>
+ 			  <artifactId>log4j-api</artifactId>
+		</dependency>
+		<dependency>
+			  <groupId>org.apache.logging.log4j</groupId>
+ 			  <artifactId>log4j-core</artifactId>
+		</dependency>
+		<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-slf4j-impl</artifactId>
+		</dependency>
+		<dependency> <!-- 桥接：告诉commons logging使用Log4j2 -->
+    		<groupId>org.apache.logging.log4j</groupId>
+   			 <artifactId>log4j-jcl</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.101tec</groupId>
+			<artifactId>zkclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-netty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jdk-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.esotericsoftware.kryo</groupId>
+			<artifactId>kryo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.javakaffee</groupId>
+			<artifactId>kryo-serializers</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.ruedigermoeller</groupId>
+			<artifactId>fst</artifactId>
+		</dependency>
+		<dependency>
+			<artifactId>spring-core</artifactId>
+			<groupId>org.springframework</groupId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.none</groupId>
+			<artifactId>st-bosscenter-facade-stub</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.none</groupId>
+			<artifactId>st-bosscenter-service</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.none</groupId>
+			<artifactId>st-common</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>dubbo</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+					<warName>st-bosscenter-facade</warName>
+					<webResources>
+						<resource>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>src/main/resources/${package.environment}</directory>
+							<targetPath>WEB-INF/classes</targetPath>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+				</configuration>
+
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<username>tomcat</username>
+					<password>tomcat</password>
+					<warFile>${basedir}/target/st-bosscenter-facade.war</warFile>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>applicationContext.xml</include>
+					<include>*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+
+	<profiles>
 		<profile>
 			<id>production</id>
 			<properties>
@@ -38,12 +208,6 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-		</profile>
-		<profile>
-			<id>test</id>
-			<properties>
-				<package.environment>test</package.environment>
-			</properties>
 		</profile>
 	</profiles>
 </project>
